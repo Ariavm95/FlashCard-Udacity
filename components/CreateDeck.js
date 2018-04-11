@@ -1,44 +1,41 @@
 import React from 'react'
 import {View, TextInput, StyleSheet, Text, TouchableOpacity} from 'react-native'
-import {addCard} from '../actions/action'
+import {addDeck} from '../actions/action'
 import { connect } from 'react-redux'
+import {setScore, getScore} from '../actions/action'
 
-class AddCard extends React.Component {
+class CreateDeck extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {textQ: '', textA: ''};
+        this.state = {text: ''};
     }
+
+    /*() => {
+        console.log("KOOOO");
+        this.props.navigation.navigate('DeckHome',{deck:this.state.text})
+        }); */
     render() {
-        const { params } = this.props.navigation.state;
-        const deck = params ? params.deck : null;
-        return (
+      const { params } = this.props.navigation.state;
+      const addDeck = params ? params.add : null;
+      return (
           <View style={styles.container}>
             <Text style={styles.label}>
-                Question:
+                What's this deck about?
             </Text>
             <TextInput
                 style={styles.input}
-                placeholder=" Type the question!"
-                onChangeText={(textQ) => this.setState({textQ})}
+                placeholder=" Type here!"
+                onChangeText={(text) => this.setState({text})}
                 editable = {true}
                 maxLength = {40}
                 multiline = {false}
             />
-
-            <Text style={styles.label}>
-                Answer:
-            </Text>
-            <TextInput
-                style={styles.input}
-                placeholder=" Type the answer!"
-                onChangeText={(textA) => this.setState({textA})}
-                editable = {true}
-                maxLength = {40}
-                multiline = {false}
-            />
-            <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.textQ === '' || this.state.textA ===''){alert('You can not leave either of them empty!')} else{const aCard = {question: this.state.textQ,
-                answer: this.state.textA}; this.props.AddCard(deck,aCard); this.props.navigation.goBack()}}}>
-                <Text style={styles.buttonText}>Submit
+            <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.text === ''){alert("You can not leave it empty!")} 
+                else{ this.props.setZeroScore(deck=this.state.text) ;
+                  this.props.AddDeck(deck=this.state.text).then(()=>this.props.navigation.navigate('DeckHome',{deck:this.state.text}));
+                  }
+                }}>
+                <Text style={styles.buttonText}>Create
                 </Text>
             </TouchableOpacity>
           </View>
@@ -54,7 +51,6 @@ const styles = StyleSheet.create({
     label:{
         alignSelf: 'flex-start',
         fontSize: 18,
-        marginTop: 5,
     },
     input: {
        marginTop: 10,
@@ -63,7 +59,6 @@ const styles = StyleSheet.create({
        borderWidth: 2,
        borderRadius: 8,
        paddingLeft: 10,
-       marginBottom: 8,
     },
     button:{
         backgroundColor: '#000',
@@ -77,15 +72,18 @@ const styles = StyleSheet.create({
       buttonText:{
         color: '#fff',
       },
+
 })
 
 function mapDispatchToProps (dispatch, { navigation }) {
     //const { entryId } = navigation.state.params
+    const score = 0
     return {
-      AddCard: (deck, card) => dispatch(addCard(deck, card)),
+      AddDeck: (deck) => dispatch(addDeck(deck)),
+      setZeroScore: (deck) => dispatch(setScore(deck, score )),
       //goBack: () => navigation.goBack(),
     }
   }
 
 export default connect(null, mapDispatchToProps
-)(AddCard)
+)(CreateDeck)
