@@ -12,6 +12,7 @@ $ npm start
 Then, enter i to run the program in the iOS emulator which XCode provides.
 Also, you can run the code if you have Expo application installed. Just open the project by Expo application and choose what device you want to run the code on. In this case, choose ios device since it ha been tested only on iOS emulator.
 
-## Tested Platform
+
+## Tested Platforms
 This code has been tested in an iOS emulator.
 
