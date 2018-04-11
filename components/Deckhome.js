@@ -10,8 +10,8 @@ class Deckhome extends React.Component {
       const questionArray= dataDeck['questions']
         return (
           <View style={styles.container}>
-            <Text style={{marginTop:50, marginBottom:10, fontSize:40}}>{deck}</Text>
-            <Text style={{marginButtom:30, fontSize:18}}>{questionArray.length} cards</Text>
+            <Text style={{marginTop:50, marginBottom:10, fontSize:48}}>{deck}</Text>
+            <Text style={{marginBottom:20, fontSize:16}}>{questionArray.length} cards</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
               'Play',
               {deck: deck}
