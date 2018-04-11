@@ -3,7 +3,7 @@ import Card from './Card'
 import {View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList, ListView, Dimensions} from 'react-native'
 import { connect } from 'react-redux'
 import ItemView from './ItemView'
-
+import {clearLocalNotification, setLocalNotification} from '../helper/notification'
 
 class Play extends React.Component {
 
@@ -20,7 +20,10 @@ class Play extends React.Component {
         console.log('scrolled to page ', pageNum);
     }*/
 
- 
+    /*componentDidMount(){
+        clearLocalNotification()
+      .then(setLocalNotification)
+    }*/
 
     render() {
         const { params } = this.props.navigation.state;

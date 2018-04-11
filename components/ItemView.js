@@ -29,7 +29,7 @@ import {setScore} from '../actions/action'
     }
     render() {
         var {height, width} = Dimensions.get('window');
-        const {item, deck, index, size, get, set} = this.props
+        const {item, deck, index, size, set} = this.props
         const intialScore =this.props.data[deck]
 
         return(
@@ -52,6 +52,9 @@ import {setScore} from '../actions/action'
                             <Text style={styles.buttonText}>Wrong!</Text>
                         </TouchableOpacity>
                     </View>
+                   {((index+1) === size ) && <TouchableOpacity style={[styles.correctionButton, {backgroundColor: 'gray'}]} onPress={()=> {const score = 0; this.props.set(deck, score);}} >
+                            <Text style={styles.buttonText}>Reset!</Text>
+                    </TouchableOpacity>}
                  </View>
         )
     }

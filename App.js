@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducer/index'
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
+import {setLocalNotification} from './helper/notification'
 
 const MyApp = StackNavigator({
   Home: { screen: Home },
@@ -21,8 +22,8 @@ const MyApp = StackNavigator({
   Play: {screen: Play},
 });
 export default class App extends React.Component {
-  componentDidMount() {
-    
+  componentDidMount(){
+    setLocalNotification()
   }
   render() {
     return (

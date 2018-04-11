@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet,TouchableOpacity ,Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux'
+import {setLocalNotification} from '../helper/notification'
 
 const key = 'udacity:key'
 class Home extends React.Component {
@@ -17,6 +18,7 @@ class Home extends React.Component {
     );
 
   }
+ 
 
     render() {
       return (
