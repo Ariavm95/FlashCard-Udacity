@@ -4,12 +4,12 @@ Its goal is to help users memorize things. It will allow the user to create a de
 This application was built using React native and Redux.
 
 ## Installation
-First, you have to install Node.js on your computer. Then, write these command in project's directory in Terminal.
+First, you have to install Node.js on your computer. Then, write these commands in the project's directory in Terminal.
 ```
 $ npm install
 $ npm start
 ```
-Then you will see a menu. Enter i to run the program in the iOS emulator which XCode provides.
+Then enter i to run the program in the iOS emulator which XCode provides.
 Also, you can install Expo to run the code. Just open the project by Expo application and choose what device you want to run the code on. In this case, choose ios device since it tested only on iOS emulator.
 
 ## Tested Platform
