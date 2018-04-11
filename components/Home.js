@@ -1,35 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet,TouchableOpacity ,Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux'
 import {setLocalNotification} from '../helper/notification'
 
 const key = 'udacity:key'
-class Home extends React.Component {
-  constructor(props){
-    super(props)
-  }
-
-  async getData () {
-    let response = await AsyncStorage.getItem(key);
-    let data = await JSON.parse(response) || {};
-    console.log(data)
-    this.setState(
-      data
-    );
-
-  }
- 
+class Home extends Component {
 
     render() {
       return (
         <View style={styles.container}>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'Decklist'
+              'DeckList'
             )}>
             <Text style={styles.buttonText}>Decks</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'Createdeck',
+              'CreateDeck',
               {add: this.addDeck}
             )}>
             <Text style={styles.buttonText}  >Create deck</Text>

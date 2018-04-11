@@ -24,17 +24,17 @@ export function clearLocalNotification () {
     }
   }
   
-  export function setLocalNotification () {
+  export  function setLocalNotification () {
     
     AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(JSON.parse)
-      .then((data) => {
+      .then( async (data) => {
         if (data === null) {
           
-          Permissions.askAsync(Permissions.NOTIFICATIONS)
-            .then(({ status }) => {
-              console.log(status)
-              if (status === 'granted') {
+          const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+            
+          console.log(status)
+          if (status === 'granted') {
                 
                 Notifications.cancelAllScheduledNotificationsAsync()
                 let tomorrow = new Date()
@@ -51,8 +51,8 @@ export function clearLocalNotification () {
                 )
   
                 AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-              }
-            })
+          }
         }
+        
       })
   }

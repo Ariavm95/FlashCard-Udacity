@@ -4,7 +4,7 @@ import {addDeck} from '../actions/action'
 import { connect } from 'react-redux'
 import {setScore, getScore} from '../actions/action'
 
-class Createdeck extends React.Component {
+class CreateDeck extends React.Component {
     constructor(props) {
         super(props);
         this.state = {text: ''};
@@ -25,7 +25,8 @@ class Createdeck extends React.Component {
                 maxLength = {40}
                 multiline = {false}
             />
-            <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.text === ''){alert("You can not leave it empty!")} else{this.props.AddDeck(this.state.text); this.props.setZeroScore(this.state.text); this.props.navigation.goBack()}}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.text === ''){alert("You can not leave it empty!")} 
+                else{  this.props.AddDeck(this.state.text); this.props.setZeroScore(this.state.text); this.props.navigation.navigate('DeckList')}}}>
                 <Text style={styles.buttonText}>Create
                 </Text>
             </TouchableOpacity>
@@ -77,4 +78,4 @@ function mapDispatchToProps (dispatch, { navigation }) {
   }
 
 export default connect(null, mapDispatchToProps
-)(Createdeck)
+)(CreateDeck)

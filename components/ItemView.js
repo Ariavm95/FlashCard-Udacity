@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from './Card'
-import {View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList, ListView, Dimensions} from 'react-native'
+import {ScrollView, View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList, ListView, Dimensions} from 'react-native'
 import { connect } from 'react-redux'
 import {setScore} from '../actions/action'
 
@@ -29,33 +29,40 @@ import {setScore} from '../actions/action'
     }
     render() {
         var {height, width} = Dimensions.get('window');
-        const {item, deck, index, size, set} = this.props
+        const {item, deck, index, size, set, backToFirst} = this.props
         const intialScore =this.props.data[deck]
 
         return(
-                <View style={{  width:width, justifyContent:'flex-start', alignItems:'center'}} >
+                <ScrollView horizontal={false} contentContainerStyle={{  width:width, justifyContent:'flex-start', alignItems:'center'}} >
                     <Text  style={{marginTop: 10, marginBottom:15, fontSize: 22, fontWeight: 'bold'}}>
                         {deck}
                     </Text>
                     <Text  style={{marginTop: 10, marginBottom:8, fontSize:14}}>
                         {index+1} / {size} 
                     </Text>
-                    <Text style={{marginTop: 10, color: "green", marginBottom:20, fontSize:16, fontWeight:'bold'}}>
-                        Score: {Math.trunc(this.props.data[deck])}%
-                    </Text>
+                   
                     <Card item={item}/>
                     <View style={styles.buttons}>
-                        <TouchableOpacity  style={[styles.correctionButton, {backgroundColor: 'green', marginRight:5}]} onPress={()=> {const score = this.correct(index, intialScore);  this.props.set(deck, score);  }} >
+                        <TouchableOpacity  style={[styles.correctionButton, {backgroundColor: 'green', marginRight:5}]} 
+                        onPress={()=> {
+                            const score = this.correct(index, intialScore);  this.props.set(deck, score);  }} >
                             <Text style={styles.buttonText}>Correct!</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.correctionButton, {backgroundColor: 'red', marginLeft:5}]}  onPress={()=> {const score = this.wrong(index, intialScore);  this.props.set(deck, score);  }}>
+                        <TouchableOpacity style={[styles.correctionButton, {backgroundColor: 'red', marginLeft:5}]}  
+                        onPress={()=> {const score = this.wrong(index, intialScore);  this.props.set(deck, score);  }}>
                             <Text style={styles.buttonText}>Wrong!</Text>
                         </TouchableOpacity>
                     </View>
-                   {((index+1) === size ) && <TouchableOpacity style={[styles.correctionButton, {backgroundColor: 'gray'}]} onPress={()=> {const score = 0; this.props.set(deck, score);}} >
-                            <Text style={styles.buttonText}>Reset!</Text>
-                    </TouchableOpacity>}
-                 </View>
+                   {((index+1) === size ) && <View>
+                       <Text style={{marginTop: 20, color: "green", fontSize:16, fontWeight:'bold'}}>
+                        Score: {Math.trunc(this.props.data[deck])}%
+                        </Text>
+                        <TouchableOpacity style={[styles.reset]} 
+                        onPress={()=> {const score = 0; this.props.set(deck, score); backToFirst();}} >
+                            <Text style={{color:'blue'}}>Reset!</Text>
+                        </TouchableOpacity>
+                    </View>}
+                 </ScrollView>
         )
     }
 }
@@ -93,12 +100,19 @@ const styles = StyleSheet.create({
       },
 
       correctionButton:{
+        padding: 10,
+        borderRadius: 7,
+        height: 40,
+        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      reset:{
         
         padding: 10,
         borderRadius: 7,
         height: 40,
         marginTop: 10,
-        
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -110,7 +124,6 @@ function mapStateToProps (state, { navigation }) {
 
     return {
       data: state.score,
-      whole: state,
     }
   }
   function mapDispatchToProps (dispatch, { navigation }) {

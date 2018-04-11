@@ -3,7 +3,7 @@ import {View, TextInput, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import {addCard} from '../actions/action'
 import { connect } from 'react-redux'
 
-class Addcard extends React.Component {
+class AddCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {textQ: '', textA: ''};
@@ -88,4 +88,4 @@ function mapDispatchToProps (dispatch, { navigation }) {
   }
 
 export default connect(null, mapDispatchToProps
-)(Addcard)
+)(AddCard)

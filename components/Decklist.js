@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {View, TextInput, StyleSheet, Text, TouchableOpacity, FlatList} from 'react-native'
 ItemView=({item,props}) => {
-    console.log('PROPS')
     const data = props.data[item]
     return(
     <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate(
-              'Deckhome',
+              'DeckHome',
               {deck : item}
             )}>
         <Text style={[styles.buttonText,{fontSize:18}]}>{item} </Text>
@@ -14,17 +13,12 @@ ItemView=({item,props}) => {
     </TouchableOpacity>
     )
 }
-class Decklist extends React.Component {
+class DeckList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        
-    }
 
     renderArray = ({item}) => {
 
         const { params } = this.props.navigation.state;
-
         const deck = this.props.data[item]
         return <ItemView item={item} props={this.props}/>
     }
@@ -93,4 +87,4 @@ function mapStateToProps (state, { navigation }) {
     }
   }
 export default connect(mapStateToProps
-)(Decklist)
+)(DeckList)

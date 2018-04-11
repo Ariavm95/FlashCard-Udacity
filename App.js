@@ -1,10 +1,10 @@
 import React from 'react';
 import Home from './components/Home'
-import Createdeck from './components/Createdeck'
-import Decklist from './components/Decklist'
-import Deckhome from './components/Deckhome'
-import Addcard from './components/Addcard'
-import Play from './components/Play'
+import CreateDeck from './components/CreateDeck'
+import DeckList from './components/DeckList'
+import DeckHome from './components/DeckHome'
+import AddCard from './components/AddCard'
+import StartQuiz from './components/StartQuiz'
 import {StackNavigator} from 'react-navigation';
 import { StyleSheet,TouchableOpacity ,Text, View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -15,15 +15,15 @@ import {setLocalNotification} from './helper/notification'
 
 const MyApp = StackNavigator({
   Home: { screen: Home },
-  Createdeck: {screen: Createdeck},
-  Decklist: {screen: Decklist},
-  Deckhome: {screen: Deckhome},
-  Addcard: {screen: Addcard},
-  Play: {screen: Play},
+  CreateDeck: {screen: CreateDeck},
+  DeckList: {screen: DeckList},
+  DeckHome: {screen: DeckHome},
+  AddCard: {screen: AddCard},
+  StartQuiz: {screen: StartQuiz},
 });
 export default class App extends React.Component {
-  componentDidMount(){
-    setLocalNotification()
+ async componentDidMount(){
+    await setLocalNotification()
   }
   render() {
     return (

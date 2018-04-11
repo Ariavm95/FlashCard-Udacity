@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import ItemView from './ItemView'
 import {clearLocalNotification, setLocalNotification} from '../helper/notification'
 
-class Play extends React.Component {
+class StartQuiz extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,22 +24,34 @@ class Play extends React.Component {
         clearLocalNotification()
       .then(setLocalNotification)
     }*/
-
+    goBakcToFirst=()=>{
+        this.list.scrollToIndex({ index: 0 });
+    }
+   
     render() {
         const { params } = this.props.navigation.state;
       const deck = params ? params.deck : null;
       const dataDeck = this.props.data[deck]
       const questionArray = dataDeck['questions']
-      
+
       return (
           <View style={{flex: 1}}>
               {(questionArray.length) ?
             <FlatList
                 horizontal={true}
                 pagingEnabled={true}
+                ref={(ref) => { this.list = ref; }}
+                keyExtractor={item => item}
                 data={questionArray}
-                renderItem={({item}) => {const size = questionArray.length; const index = questionArray.findIndex( i => i['question'] === item['question'] ); 
-                return <ItemView item={item} deck={deck} index={index} size={size} />}}
+                renderItem={
+                    ({item}) =>
+                    {
+                        const size = questionArray.length;
+                        const index = questionArray.findIndex( i => i['question'] === item['question'] );
+                        return <ItemView item={item} deck={deck} index={index} size={size} backToFirst={this.goBakcToFirst} />
+                    }
+                }
+
             /> : <Text style={{fontSize:18, marginHorizontal:10, marginTop:7}}>You should have at least one card in your deck!</Text>}
           </View>
       );
@@ -95,4 +107,4 @@ function mapStateToProps (state, { navigation }) {
     }
   }
 export default connect(mapStateToProps
-)(Play)
+)(StartQuiz)

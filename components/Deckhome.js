@@ -2,7 +2,7 @@ import React from 'react'
 import {View, TextInput, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import { connect } from 'react-redux'
 
-class Deckhome extends React.Component {
+class DeckHome extends React.Component {
     render() {
       const { params } = this.props.navigation.state;
       const deck = params ? params.deck : null;
@@ -13,14 +13,14 @@ class Deckhome extends React.Component {
             <Text style={{marginTop:50, marginBottom:10, fontSize:48}}>{deck}</Text>
             <Text style={{marginBottom:20, fontSize:16}}>{questionArray.length} cards</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'Play',
+              'StartQuiz',
               {deck: deck}
 
             )}>
-            <Text style={styles.buttonText}>Play</Text>
+            <Text style={styles.buttonText}>Start quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'Addcard',
+              'AddCard',
               {deck: deck}
             )}>
             <Text style={styles.buttonText}>Add Card</Text>
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
     }
   }
 export default connect(mapStateToProps
-)(Deckhome)
+)(DeckHome)
