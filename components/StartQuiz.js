@@ -41,7 +41,7 @@ class StartQuiz extends React.Component {
                 horizontal={true}
                 pagingEnabled={true}
                 ref={(ref) => { this.list = ref; }}
-                keyExtractor={item => item}
+                keyExtractor={item => item['question']}
                 data={questionArray}
                 renderItem={
                     ({item}) =>

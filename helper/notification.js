@@ -33,7 +33,7 @@ export function clearLocalNotification () {
           
           const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
             
-          console.log(status)
+          
           if (status === 'granted') {
                 
                 Notifications.cancelAllScheduledNotificationsAsync()

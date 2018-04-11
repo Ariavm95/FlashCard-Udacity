@@ -9,6 +9,11 @@ class CreateDeck extends React.Component {
         super(props);
         this.state = {text: ''};
     }
+
+    /*() => {
+        console.log("KOOOO");
+        this.props.navigation.navigate('DeckHome',{deck:this.state.text})
+        }); */
     render() {
       const { params } = this.props.navigation.state;
       const addDeck = params ? params.add : null;
@@ -26,7 +31,10 @@ class CreateDeck extends React.Component {
                 multiline = {false}
             />
             <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.text === ''){alert("You can not leave it empty!")} 
-                else{  this.props.AddDeck(this.state.text); this.props.setZeroScore(this.state.text); this.props.navigation.navigate('DeckList')}}}>
+                else{ this.props.setZeroScore(deck=this.state.text) ;
+                  this.props.AddDeck(deck=this.state.text).then(()=>this.props.navigation.navigate('DeckHome',{deck:this.state.text}));
+                  }
+                }}>
                 <Text style={styles.buttonText}>Create
                 </Text>
             </TouchableOpacity>

@@ -24,6 +24,7 @@ const key = 'udacity:key'
         await AsyncStorage.setItem(key, JSON.stringify(data))
         //let response = await AsyncStorage.getItem(key);
         dispatch(addD(deck))
+        //navigateFunc.navigate('DeckHome',{deck:deck})
       }
   }
 
