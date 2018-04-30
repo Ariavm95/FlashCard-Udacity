@@ -8,7 +8,7 @@ import {clearLocalNotification, setLocalNotification} from '../helper/notificati
 class StartQuiz extends React.Component {
 
     static navigationOptions = {
-        title: 'Deck Home',
+        title: 'Quiz',
         headerTintColor: "#f9df81",
         headerStyle: {
           backgroundColor: '#4f869b'
