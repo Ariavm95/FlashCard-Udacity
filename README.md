@@ -16,3 +16,7 @@ Also, you can run the code if you have Expo application installed. Just open the
 ## Tested Platforms
 This code has been tested in an iOS emulator.
 
+## Screenshots
+![alt Answer](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Answer.png)
+![alt Deck List](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckList.png)
+![alt Deck Home](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckHome.png)
