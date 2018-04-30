@@ -11,7 +11,7 @@ import {
   } from 'react-native';
 
 export default class Card extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.animatedValue = new Animated.Value(0);
     this.value = 0;
     this.animatedValue.addListener(({ value }) => {
@@ -90,19 +90,19 @@ const styles = StyleSheet.create({
     height: height/2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#4f869b',
     backfaceVisibility: 'hidden',
     borderRadius: 10,
   },
   flipCardBack: {
-    backgroundColor: "red",
+    backgroundColor: "#e58e26",
     position: "absolute",
     top: 0,
   },
   flipText: {
     
     fontSize: 20,
-    color: 'white',
+    color: '#eee',
     fontWeight: 'bold',
   }
   ,

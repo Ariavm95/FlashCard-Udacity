@@ -26,11 +26,11 @@ export default class App extends React.Component {
     await setLocalNotification()
   }
   render() {
+    console.disableYellowBox = true;
     return (
      <Provider store={createStore(reducer, applyMiddleware(thunk))}>
         <View style={{flex: 1}}>
           <MyApp/>
-          
         </View>
       </Provider>
     )

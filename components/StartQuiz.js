@@ -7,10 +7,15 @@ import {clearLocalNotification, setLocalNotification} from '../helper/notificati
 
 class StartQuiz extends React.Component {
 
-    constructor(props) {
-        super(props);
-        
-
+    static navigationOptions = {
+        title: 'Deck Home',
+        headerTintColor: "#f9df81",
+        headerStyle: {
+          backgroundColor: '#4f869b'
+        },
+        headerBackTitleStyle: {fontSize: 15,},
+     /*    headerLeft:
+        <HeaderBarItem  title='Decks' />, */
     }
     /*onScrollEnd(e) {
         let contentOffset = e.nativeEvent.contentOffset;
@@ -29,13 +34,13 @@ class StartQuiz extends React.Component {
     }
    
     render() {
-        const { params } = this.props.navigation.state;
+      const { params } = this.props.navigation.state;
       const deck = params ? params.deck : null;
       const dataDeck = this.props.data[deck]
       const questionArray = dataDeck['questions']
 
       return (
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, backgroundColor: '#60a3bc'}}>
               {(questionArray.length) ?
             <FlatList
                 horizontal={true}
@@ -52,7 +57,7 @@ class StartQuiz extends React.Component {
                     }
                 }
 
-            /> : <Text style={{fontSize:18, marginHorizontal:10, marginTop:7}}>You should have at least one card in your deck!</Text>}
+            /> : <Text style={{fontSize:18, marginHorizontal:10, marginTop:7, color:"white", textAlign:"center"}}>You should have at least one card in your deck!</Text>}
           </View>
       );
     }

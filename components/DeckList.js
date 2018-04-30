@@ -8,16 +8,21 @@ ItemView=({item,props}) => {
               'DeckHome',
               {deck : item}
             )}>
-        <Text style={[styles.buttonText,{fontSize:18}]}>{item} </Text>
-        <Text style={[styles.buttonText,{fontSize:15}]}>{data['questions'].length} card(s)</Text>
+        <Text style={[styles.buttonText,{fontSize:19}]}>{item} </Text>
+        <Text style={[styles.buttonText,{fontSize:14}]}>{data['questions'].length} card(s)</Text>
     </TouchableOpacity>
     )
 }
 class DeckList extends React.Component {
-
+    static navigationOptions = {
+        title: 'Deck List',
+        headerTintColor: "#f9df81",
+        headerStyle: {
+          backgroundColor: '#4f869b'
+        }
+    }
 
     renderArray = ({item}) => {
-
         const { params } = this.props.navigation.state;
         const deck = this.props.data[item]
         return <ItemView item={item} props={this.props}/>
@@ -38,22 +43,30 @@ class DeckList extends React.Component {
         const { params } = this.props.navigation.state;
         const deckList = Object.keys(this.props.data)
        return (
-          <View style={styles.container}>
-            {(deckList.length) ? <FlatList
-                
-                data={deckList}
-                renderItem={this.renderArray}
-            /> :<View><Text style={{fontSize:17}}>You have to create a deck first!</Text></View>}
+         <View style={styles.container}>
+            <View style={styles.subContainer}>
+              {(deckList.length) ? <FlatList
+                  
+                  data={deckList}
+                  renderItem={this.renderArray}
+              /> :<View style={{backgroundColor: '#60a3bc'}}><Text style={{fontSize:17, color: "white"}}>You have to create a deck first!</Text></View>}
+            </View>
           </View>
       );
     }
 }
 const styles = StyleSheet.create({
-    container: {
+    container:{
+      flex: 1,
+      backgroundColor: '#60a3bc',
+    },
+    subContainer: {
        paddingTop: 23,
        paddingLeft: 20,
        paddingRight: 20,
+       
     },
+
     label:{
         alignSelf: 'flex-start',
         fontSize: 18,
@@ -67,7 +80,7 @@ const styles = StyleSheet.create({
        paddingLeft: 10,
     },
     button:{
-        backgroundColor: '#fff',
+        backgroundColor: '#4f869b',
         padding: 10,
         borderRadius: 8,
         marginTop: 10,
@@ -75,9 +88,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       buttonText:{
-        color: '#000',
+        color: '#eee',
       },
-
 })
 
 function mapStateToProps (state, { navigation }) {

@@ -1,8 +1,45 @@
 import React from 'react'
-import {View, TextInput, StyleSheet, Text, TouchableOpacity} from 'react-native'
+import {View, TextInput, StyleSheet, Text, TouchableOpacity, HeaderBarItem, Dimensions, HeaderBackArrow} from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+import { Ionicons } from '@expo/vector-icons';
+
+/* const resetAction = (deck) => {NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Home'}),
+    NavigationActions.navigate({ routeName: 'DeckHome', params:{deck : deck}})
+  ]
+})} */
 
 class DeckHome extends React.Component {
+    static navigationOptions = ({ navigation, screenProps }) => ({
+        title: 'Deck Home',
+        headerTintColor: "#f9df81",
+        headerStyle: {
+          backgroundColor: '#4f869b'
+        },
+        headerTitleStyle: { color: '#f9df81' },
+        headerBackTitleStyle: {fontSize: 15,},
+        //headerLeft: <View><Ionicons name="md-checkmark-circle" size={32} color="green" onPress={alert} /><Text>Hello</Text></View>,
+    });
+
+    resetAction = (deck) => {
+      console.log("BOOOOO")
+      const d = this.props.navigation.state.params.deck
+      NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Home'}),
+          NavigationActions.navigate({ routeName: 'DeckHome', params:{deck : 'H'}})
+        ]
+      })
+    }
+
+    componentDidMount(){
+      //this.props.navigation.dispatch(this.resetAction())
+    }
+
     render() {
       const { params } = this.props.navigation.state;
       const deck = params ? params.deck : null;
@@ -10,35 +47,35 @@ class DeckHome extends React.Component {
       const questionArray= dataDeck['questions']
         return (
           <View style={styles.container}>
-            <Text style={{marginTop:50, marginBottom:10, fontSize:48}}>{deck}</Text>
-            <Text style={{marginBottom:20, fontSize:16}}>{questionArray.length} cards</Text>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'StartQuiz',
-              {deck: deck}
+            <Text style={{marginTop:50, marginBottom:10, fontSize:48, color:"#eee"}}>{deck}</Text>
+            <Text style={{marginBottom:20, fontSize:16, color:"#eee"}}>{questionArray.length} card(s)</Text>
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
+                'StartQuiz',
+                {deck: deck}
 
-            )}>
+              )}>
             <Text style={styles.buttonText}>Start quiz</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'AddCard',
-              {deck: deck}
-            )}>
-            <Text style={styles.buttonText}>Add Card</Text>
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
+                'AddCard',
+                {deck: deck}
+              )}>
+            <Text style={styles.buttonText}>Add card</Text>
+           </TouchableOpacity>
+          </View>
         );
     }
 }
-
+var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#60a3bc',
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
     button:{
-      backgroundColor: '#000',
+      backgroundColor: '#4f869b',
       padding: 10,
       borderRadius: 7,
       height: 45,
@@ -47,9 +84,12 @@ const styles = StyleSheet.create({
       marginTop: 10,
       justifyContent: 'center',
       alignItems: 'center',
+      width:width/2,
     },
     buttonText:{
-      color: '#fff',
+      color: '#eee',
+      fontSize: 15,
+      
     },
   });
 

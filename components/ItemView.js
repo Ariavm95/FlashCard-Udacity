@@ -34,39 +34,41 @@ import {setScore} from '../actions/action'
 
         return(
                 <ScrollView horizontal={false} contentContainerStyle={{  width:width, justifyContent:'flex-start', alignItems:'center'}} >
-                    <Text  style={{marginTop: 10, marginBottom:15, fontSize: 22, fontWeight: 'bold'}}>
+                    <Text  style={{marginTop: 10, marginBottom:15, fontSize: 22, fontWeight: 'bold', color:'#eee'}}>
                         {deck}
                     </Text>
-                    <Text  style={{marginTop: 10, marginBottom:8, fontSize:14}}>
+                    <Text  style={{marginTop: 10, marginBottom:8, fontSize:14, color:'#eee'}}>
                         {index+1} / {size} 
                     </Text>
                    
                     <Card item={item}/>
                     <View style={styles.buttons}>
-                        <TouchableOpacity  style={[styles.correctionButton, {backgroundColor: 'green', marginRight:5}]} 
+                    <TouchableOpacity style={[styles.correctionButton, {backgroundColor: '#e55039', marginRight:5}]}  
+                        onPress={()=> {const score = this.wrong(index, intialScore);  this.props.set(deck, score);  }}>
+                            <Text style={styles.buttonText}>Wrong</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity  style={[styles.correctionButton, {backgroundColor: '#079992', marginLeft:5 }]} 
                         onPress={()=> {
                             const score = this.correct(index, intialScore);  this.props.set(deck, score);  }} >
-                            <Text style={styles.buttonText}>Correct!</Text>
+                            <Text style={styles.buttonText}>Correct</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.correctionButton, {backgroundColor: 'red', marginLeft:5}]}  
-                        onPress={()=> {const score = this.wrong(index, intialScore);  this.props.set(deck, score);  }}>
-                            <Text style={styles.buttonText}>Wrong!</Text>
-                        </TouchableOpacity>
+                      
                     </View>
                    {((index+1) === size ) && <View>
-                       <Text style={{marginTop: 20, color: "green", fontSize:16, fontWeight:'bold'}}>
+                       <Text style={{marginTop: 20, color: "#b8e994", fontSize:20, fontWeight:'bold'}}>
                         Score: {Math.trunc(this.props.data[deck])}%
                         </Text>
                         <TouchableOpacity style={[styles.reset]} 
                         onPress={()=> {const score = 0; this.props.set(deck, score); backToFirst();}} >
-                            <Text style={{color:'blue'}}>Reset!</Text>
+                            <Text style={{color:'#f6b93b', fontSize:16}}>Reset!</Text>
                         </TouchableOpacity>
                     </View>}
                  </ScrollView>
         )
     }
 }
-
+var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
    
     label:{
@@ -104,6 +106,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         height: 40,
         marginTop: 10,
+        width: width/2 - 25,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -115,6 +118,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        
       },
     
 

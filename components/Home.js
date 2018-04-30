@@ -1,41 +1,85 @@
 import React, { Component } from 'react';
-import { StyleSheet,TouchableOpacity ,Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet,TouchableOpacity ,Text, View, AsyncStorage, Image, Animated, Easing,Dimensions } from 'react-native';
 import { connect } from 'react-redux'
 import {setLocalNotification} from '../helper/notification'
+import logoImg from '../images/logo.png';
 
 const key = 'udacity:key'
 class Home extends Component {
+  constructor (props) {
+    super(props)
+    
+    this.opacityValue = new Animated.Value(0);
+  }
+  static navigationOptions = {
+    title: 'Home',
+    headerTintColor: "#f9df81",
+    headerStyle: {
+      backgroundColor: '#4f869b'
+    }
+ }
+
+  op=() => {
+    this.opacityValue.setValue(0);
+    Animated.timing(
+      this.opacityValue,
+      {
+        toValue: 1,
+        duration: 1600,
+        easing: Easing.linear
+      }
+    ).start();
+  }
+componentDidMount(){
+  this.op()
+}
 
     render() {
+     var opacit = this.opacityValue.interpolate({
+      inputRange: [0, 0.4 ,1],
+      outputRange: [0.8, 0, 1]
+    });
       return (
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'DeckList'
-            )}>
-            <Text style={styles.buttonText}>Decks</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
-              'CreateDeck',
-              {add: this.addDeck}
-            )}>
-            <Text style={styles.buttonText}  >Create deck</Text>
-          </TouchableOpacity>
-        </View>
+        <Animated.View style={styles.container}>
+          <Animated.Image source={logoImg } style={styles.logo}/>
+          <Animated.Text style={[styles.logoText,{opacity: opacit}]}> A way to memorize everything {this.opacity} </Animated.Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
+                'DeckList'
+              )}>
+              <Text style={styles.buttonText}>Decks</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
+                'CreateDeck',
+                {add: this.addDeck}
+              )}>
+              <Text style={styles.buttonText}  >Create deck</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
       );
     }
   }
   export default connect(
   )(Home)
 
+  var {height, width} = Dimensions.get('window');
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
+      justifyContent: 'flex-start',
+      backgroundColor: '#60a3bc',
+    },
+    buttonContainer: {
+      flex: 1,
+      backgroundColor: '#60a3bc',
+      alignItems: 'center',
       justifyContent: 'center',
     },
     button:{
-      backgroundColor: '#000',
+      backgroundColor: '#4f869b',
       padding: 10,
       borderRadius: 7,
       height: 45,
@@ -44,8 +88,21 @@ class Home extends Component {
       marginTop: 10,
       justifyContent: 'center',
       alignItems: 'center',
+      width: width/2,
     },
     buttonText:{
       color: '#fff',
+    },
+    logo:{
+      width: 160,
+      height: 150,
+      marginBottom: 40, 
+      marginTop: 60,
+    },
+    logoText:{
+      textAlign: 'center',
+      fontSize: 17,
+      color: '#eee',
+      textShadowColor: 'white',
     },
   });
