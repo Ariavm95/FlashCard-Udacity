@@ -18,9 +18,11 @@ This code has been tested in an iOS emulator.
 
 ## Screenshots
 <div align="center">
-<img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/QA.gif" width="400px"</img>
-    <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Question.png" width="400px"</img>
-    <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Answer.png" width="400px"</img>
+    <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/QA.gif" width="400px"</img>
+    <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/CreateDeck.png" width="400px"</img>
     <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckList.png" width="400px"</img> 
     <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckHome.png" width="400px"</img> 
+    <!-- <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Question.png" width="400px"</img>
+    <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Answer.png" width="400px"</img> -->
+    
 </div>
