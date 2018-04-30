@@ -23,6 +23,3 @@ This code has been tested in an iOS emulator.
     <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckList.png" width="400px"</img> 
     <img src="https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckHome.png" width="400px"</img> 
 </div>
-![alt Answer](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/Answer.png)
-![alt Deck List](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckList.png)
-![alt Deck Home](https://github.com/Ariavm95/FlashCard-Udacity/blob/master/Screenshots/DeckHome.png)
