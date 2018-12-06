@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
   },
   flipCard: {
-    
     width: width-40,
     height: height/2,
     alignItems: 'center',
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
     top: 0,
   },
   flipText: {
-    
     fontSize: 20,
     color: '#eee',
     fontWeight: 'bold',

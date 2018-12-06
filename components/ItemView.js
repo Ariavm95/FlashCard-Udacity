@@ -111,17 +111,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       reset:{
-        
         padding: 10,
         borderRadius: 7,
         height: 40,
         marginTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        
       },
-    
-
 })
 
 function mapStateToProps (state, { navigation }) {

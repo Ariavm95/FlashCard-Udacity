@@ -1,16 +1,17 @@
 import {GET,ADD_DECK, ADD_CARD} from '../reducer/index'
 import { AsyncStorage } from 'react-native';
 
-const key = 'udacity:key'
- export const getData =   () => {
+ const key = 'mykey'
+
+ export const getData = () => {
     return async dispatch => {
         let response = await AsyncStorage.getItem(key);
         let data = await JSON.parse(response) || {};
-        dispatch(get(data))
+        dispatch(restoreDecks(data))
         console.log(data)
     }
   }
-   const get= (state) => {
+   const restoreDecks = (state) => {
     return {
         type: GET,
         state
@@ -18,18 +19,14 @@ const key = 'udacity:key'
   }
   export  const addDeck =  (deck) => {
       return async (dispatch,getState) => {
-        
         const state = getState().cards
         const data = {...state, [deck] : { title: deck, questions: []}};
         await AsyncStorage.setItem(key, JSON.stringify(data))
-        //let response = await AsyncStorage.getItem(key);
         dispatch(addD(deck))
-        //navigateFunc.navigate('DeckHome',{deck:deck})
       }
   }
 
   const addD= (deck) => {
-    
     return {
         type: 'ADD_DECK',
         deck
@@ -40,7 +37,7 @@ const key = 'udacity:key'
       return async (dispatch,getState) => {
         const state=getState().cards
         const stateDeck= state[deck]
-        const cards = {...state, [deck]:{ ...stateDeck, questions:[...stateDeck['questions'], card] }}; 
+        const cards = {...state, [deck]:{ ...stateDeck, questions:[...stateDeck['questions'], card] }};
         await AsyncStorage.setItem(key,
         JSON.stringify(cards));
         //this.getData();

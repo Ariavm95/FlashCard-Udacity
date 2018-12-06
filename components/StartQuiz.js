@@ -17,22 +17,10 @@ class StartQuiz extends React.Component {
      /*    headerLeft:
         <HeaderBarItem  title='Decks' />, */
     }
-    /*onScrollEnd(e) {
-        let contentOffset = e.nativeEvent.contentOffset;
-        let viewSize = e.nativeEvent.layoutMeasurement;
-        // Divide the horizontal offset by the width of the view to see which page is visible
-        let pageNum = Math.floor(contentOffset.x / viewSize.width) + 1;
-        console.log('scrolled to page ', pageNum);
-    }*/
 
-    /*componentDidMount(){
-        clearLocalNotification()
-      .then(setLocalNotification)
-    }*/
     goBakcToFirst=()=>{
         this.list.scrollToIndex({ index: 0 });
     }
-   
     render() {
       const { params } = this.props.navigation.state;
       const deck = params ? params.deck : null;
@@ -106,7 +94,6 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps (state, { navigation }) {
-    //const { entryId } = navigation.state.params
     return {
       data: state.cards,
     }

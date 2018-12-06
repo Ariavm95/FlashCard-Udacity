@@ -7,7 +7,6 @@ class AddCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {textQ: '', textA: '', height: 0};
-     
     }
 
     static navigationOptions = {
@@ -43,6 +42,7 @@ class AddCard extends React.Component {
                 maxLength = {80}
                 multiline = {true}
                 placeholderTextColor= '#fcf6e0'
+                underlineColorAndroid='transparent'
             />
 
             <Text style={styles.label}>
@@ -57,6 +57,7 @@ class AddCard extends React.Component {
                 multiline = {true}
                 placeholderTextColor= '#fcf6e0'
                 onContentSizeChange={(e) => this.updateSize(e.nativeEvent.contentSize.height)}
+                underlineColorAndroid='transparent'
             />
             <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.textQ === '' || this.state.textA ===''){alert('You can not leave either of them empty!')} else{const aCard = {question: this.state.textQ,
                 answer: this.state.textA}; this.props.AddCard(deck,aCard); this.props.navigation.goBack()}}}>

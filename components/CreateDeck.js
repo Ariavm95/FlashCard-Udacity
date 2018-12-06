@@ -21,10 +21,6 @@ class CreateDeck extends React.Component {
         headerBackTitleStyle: {fontSize: 15,},
      }
 
-    /*() => {
-        console.log("KOOOO");
-        this.props.navigation.navigate('DeckHome',{deck:this.state.text})
-        }); */
     render() {
       const { params } = this.props.navigation.state;
       const addDeck = params ? params.add : null;
@@ -42,11 +38,13 @@ class CreateDeck extends React.Component {
                     maxLength = {40}
                     multiline = {false}
                     placeholderTextColor= '#fcf6e0'
-                    
+                    underlineColorAndroid='transparent'
                 />
                 <TouchableOpacity style={styles.button} onPress={()=>{if(this.state.text === ''){alert("You can not leave it empty!")} 
-                    else{ this.props.setZeroScore(deck=this.state.text) ;
-                    this.props.AddDeck(deck=this.state.text).then(()=>this.props.navigation.navigate('DeckHome',{deck:this.state.text}));
+                    else{
+                    this.props.setZeroScore(deck=this.state.text) ;
+                    this.props.AddDeck(this.state.text).then(()=>{
+                        this.props.navigation.replace('DeckHome',{deck:this.state.text})});
                     }
                     }}>
                     <Text style={styles.buttonText}>Create

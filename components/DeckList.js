@@ -46,7 +46,6 @@ class DeckList extends React.Component {
          <View style={styles.container}>
             <View style={styles.subContainer}>
               {(deckList.length) ? <FlatList
-                  
                   data={deckList}
                   renderItem={this.renderArray}
               /> :<View style={{backgroundColor: '#60a3bc'}}><Text style={{fontSize:17, color: "white"}}>You have to create a deck first!</Text></View>}

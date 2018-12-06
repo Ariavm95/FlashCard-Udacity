@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, TextInput, StyleSheet, Text, TouchableOpacity, HeaderBarItem, Dimensions, HeaderBackArrow} from 'react-native'
+import {View, TextInput, StyleSheet, Text, TouchableOpacity, HeaderBarItem, Dimensions, HeaderBackArrow, Platform} from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons';
@@ -13,6 +13,10 @@ import { Ionicons } from '@expo/vector-icons';
 })} */
 
 class DeckHome extends React.Component {
+  constructor(props){
+    super(props)
+    console.log("IN COBSTR")
+  }
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: 'Deck Home',
         headerTintColor: "#f9df81",
@@ -21,24 +25,8 @@ class DeckHome extends React.Component {
         },
         headerTitleStyle: { color: '#f9df81' },
         headerBackTitleStyle: {fontSize: 15,},
-        //headerLeft: <View><Ionicons name="md-checkmark-circle" size={32} color="green" onPress={alert} /><Text>Hello</Text></View>,
+        headerLeft: <TouchableOpacity style={{marginLeft: 19}} onPress={() => { navigation.replace('DeckList')}}><Ionicons color = '#f9df81' size={25} name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'}/></TouchableOpacity>
     });
-
-    resetAction = (deck) => {
-      console.log("BOOOOO")
-      const d = this.props.navigation.state.params.deck
-      NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Home'}),
-          NavigationActions.navigate({ routeName: 'DeckHome', params:{deck : 'H'}})
-        ]
-      })
-    }
-
-    componentDidMount(){
-      //this.props.navigation.dispatch(this.resetAction())
-    }
 
     render() {
       const { params } = this.props.navigation.state;
@@ -94,7 +82,6 @@ const styles = StyleSheet.create({
   });
 
   function mapStateToProps (state, { navigation }) {
-    //const { entryId } = navigation.state.params
     return {
       data: state.cards,
     }

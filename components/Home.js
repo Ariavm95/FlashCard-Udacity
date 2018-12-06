@@ -4,45 +4,44 @@ import { connect } from 'react-redux'
 import {setLocalNotification} from '../helper/notification'
 import logoImg from '../images/logo.png';
 
-const key = 'udacity:key'
+const key = 'mykey'
 class Home extends Component {
-  constructor (props) {
-    super(props)
-    
-    this.opacityValue = new Animated.Value(0);
-  }
-  static navigationOptions = {
-    title: 'Home',
-    headerTintColor: "#f9df81",
-    headerStyle: {
-      backgroundColor: '#4f869b'
+    constructor (props) {
+      super(props)
+      this.opacityValue = new Animated.Value(0);
     }
- }
-
-  op=() => {
-    this.opacityValue.setValue(0);
-    Animated.timing(
-      this.opacityValue,
-      {
-        toValue: 1,
-        duration: 1600,
-        easing: Easing.linear
+    static navigationOptions = {
+      title: 'Home',
+      headerTintColor: "#f9df81",
+      headerStyle: {
+        backgroundColor: '#4f869b'
       }
-    ).start();
-  }
-componentDidMount(){
-  this.op()
-}
+    }
+
+    opacityAnimation = () => {
+      this.opacityValue.setValue(0);
+      Animated.timing(
+        this.opacityValue,
+        {
+          toValue: 1,
+          duration: 1600,
+          easing: Easing.linear
+        }
+      ).start();
+    }
+    componentDidMount(){
+      this.opacityAnimation()
+    }
 
     render() {
-     var opacit = this.opacityValue.interpolate({
-      inputRange: [0, 0.4 ,1],
-      outputRange: [0.8, 0, 1]
-    });
+      let opacityInterpolate = this.opacityValue.interpolate({
+        inputRange: [0, 0.4 ,1],
+        outputRange: [0.8, 0, 1]
+      });
       return (
         <Animated.View style={styles.container}>
           <Animated.Image source={logoImg } style={styles.logo}/>
-          <Animated.Text style={[styles.logoText,{opacity: opacit}]}> A way to memorize everything {this.opacity} </Animated.Text>
+          <Animated.Text style={[styles.logoText,{opacity: opacityInterpolate}]}> A way to memorize everything </Animated.Text>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate(
                 'DeckList'
