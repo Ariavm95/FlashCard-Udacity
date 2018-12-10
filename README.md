@@ -14,7 +14,7 @@ Also, you can run the code if you have Expo application installed. Just open the
 
 
 ## Tested Platforms
-This code has been tested in an iOS emulator.
+This has been tested only in an iOS emulator.
 
 ## Screenshots
 <div align="center">
