@@ -8,7 +8,7 @@ import {
   Animated,
   Dimensions,
   TouchableWithoutFeedback,
-  } from 'react-native';
+} from 'react-native';
 
 export default class Card extends Component {
   UNSAFE_componentWillMount() {
@@ -28,13 +28,13 @@ export default class Card extends Component {
   }
   flipCard() {
     if (this.value >= 90) {
-      Animated.spring(this.animatedValue,{
+      Animated.spring(this.animatedValue, {
         toValue: 0,
         friction: 8,
         tension: 10
       }).start();
     } else {
-      Animated.spring(this.animatedValue,{
+      Animated.spring(this.animatedValue, {
         toValue: 180,
         friction: 8,
         tension: 10
@@ -42,11 +42,12 @@ export default class Card extends Component {
     }
 
   }
-  
+
   render() {
+
     const frontAnimatedStyle = {
       transform: [
-        { rotateY: this.frontInterpolate}
+        { rotateY: this.frontInterpolate }
       ]
     }
     const backAnimatedStyle = {
@@ -57,18 +58,18 @@ export default class Card extends Component {
     return (
       <View >
         <View>
-          <Animated.View style={[styles.flipCard, frontAnimatedStyle]}>
-            <TouchableOpacity style={styles.actualCard} onPress={() => this.flipCard()}>
-                    <Text style={styles.flipText}>
-                    {this.props.item['question']}
-                    </Text>
-                </TouchableOpacity>
-            </Animated.View>
+           <Animated.View style={[frontAnimatedStyle, styles.flipCard]}>
+              <TouchableOpacity style={styles.actualCard} onPress={() => this.flipCard()}>
+                <Text style={styles.flipText}>
+                  {this.props.item['question']}
+                </Text>
+            </TouchableOpacity>
+          </Animated.View>
           <Animated.View style={[backAnimatedStyle, styles.flipCard, styles.flipCardBack]}>
             <TouchableOpacity style={styles.actualCard} onPress={() => this.flipCard()}>
-                <Text style={styles.flipText}>
+              <Text style={styles.flipText}>
                 {this.props.item['answer']}
-                </Text>
+              </Text>
             </TouchableOpacity>
           </Animated.View>
         </View>
@@ -76,7 +77,7 @@ export default class Card extends Component {
     );
   }
 }
-var {height, width} = Dimensions.get('window');
+var { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -85,8 +86,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
   },
   flipCard: {
-    width: width-40,
-    height: height/2,
+    width: width - 40,
+    height: height / 2,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#4f869b',
@@ -104,19 +105,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
   ,
-  actualCard:{
-    width: width-40,
-    height: height/2,
+  actualCard: {
+    width: width - 40,
+    height: height / 2,
     alignItems: 'center',
     justifyContent: 'center',
   }
   ,
-  buttons:{
+  buttons: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  button:{
+  button: {
     backgroundColor: '#000',
     padding: 10,
     borderRadius: 7,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonText:{
+  buttonText: {
     color: '#fff',
   },
 });
